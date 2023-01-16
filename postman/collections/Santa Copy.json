@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "956987ee-9593-44b2-82c2-250c06bc5cdf",
+		"name": "Santa Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "21285844-956987ee-9593-44b2-82c2-250c06bc5cdf"
+	},
+	"item": [
+		{
+			"name": "session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3c68c692-049a-4e65-b19a-1de58c015a9b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "a18053fc-dfb4-48f5-853e-6a44743045a2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/session",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce8b78de-8298-4d7e-8dc1-d3b2618ecc86",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "b643fe1a-5b0c-4054-be66-94480225ffa1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/account",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b488b0f7-bdf4-450c-9f48-fc006fedc70f",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "0b12e4f9-a113-41ef-8da3-01522d012b43",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"testdmirr@gmail.com\", \"password\":\"ntcnltlvjhjp\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6834a946-dda7-41ad-a5e7-326c554fc41c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const reqData = JSON.parse(request.data)\r",
+							"console.log(request.data)\r",
+							"pm.environment.set(\"password\", reqData.password)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ed6c0217-ccf9-47a8-8b47-12a4b8c6bb9e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"password\": \"{{$randomPassword}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/account/password",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"account",
+						"password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login Copy",
+			"id": "6d28bf9c-b3bc-45bc-bb67-5c0719350601",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"email\": \"testdmirr@gmail.com\", \"password\":\"{{password}}\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change password Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6834a946-dda7-41ad-a5e7-326c554fc41c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const reqData = JSON.parse(request.data)\r",
+							"console.log(request.data)\r",
+							"pm.environment.set(\"password\", reqData.password)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "245a1e04-b7bb-4cf8-a9a1-74344b1f54e5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"password\": \"ntcnltlvjhjp\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/account/password",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"account",
+						"password"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
